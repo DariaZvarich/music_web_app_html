@@ -70,7 +70,7 @@ class DatabaseConnection:
 
 # This function integrates with Flask to create one database connection that
 # Flask request can use. To see how to use it, look at example_routes.py
-def get_flask_database_connection(app):
+def get_flask_database_connection():
     if not hasattr(g, 'flask_database_connection'):
         g.flask_database_connection = DatabaseConnection(
             test_mode=os.getenv('APP_ENV') == 'test')

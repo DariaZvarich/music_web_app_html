@@ -1,20 +1,16 @@
-from lib.album import Album
+from lib.album import *
 
 
 class AlbumRepository:
     def __init__(self, connection):
-        self._connection = connection
-        
+        self.connection = connection
+
     def all(self):
-        rows = self._connection.execute("SELECT * FROM albums")
-        return [
-            Album(row["title"], row["release_year"], row["artist_id"], row["album_id"])
-            for row in rows
+        rows = self.connection.execute("SELECT * from albums")
+        return [Album(row["id"], row["title"], row["release_year"], row["artist_id"])
+        for row in rows        
         ]
-    
+
     def create(self, album):
-        self._connection.execute(
-            "INSERT INTO albums (title, release_year, artist_id, album_id) VALUES (%s, %s, %s, %s)",
-            [album.title, album.release_year, album.artist_id, album.album_id]
-        )
+        self.connection.execute("INSERT INTO albums(title, release_year, artist_id) VALUES (%s, %s, %s)", [album.title, album.release_year, album.artist_id])
         return None

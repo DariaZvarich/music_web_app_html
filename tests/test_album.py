@@ -1,40 +1,27 @@
-from lib.album import Album
-
-"""
-Constructs with an id, title, release date and artist id
-"""
+from lib.album import *
+'''
+constructs with an id, title, release_year and artist_id
+'''
 
 def test_constructs():
-    album = Album(
-        title="Test Title",
-        release_year=2000,
-        artist_id=1,
-        album_id=1
-    )
-    assert album.title == "Test Title"
-    assert album.release_year == 2000
-    assert album.artist_id == 1
-    assert album.album_id == 1
-    
-    
-"""
-Albums with equal contents are equal
-"""
+    album = Album(1, 'test title', 1970, 3)
+    assert album.id == 1
+    assert album.title == 'test title'
+    assert album.release_year == 1970
+    assert album.artist_id == 3
 
-def test_compares():
-    album_1 = Album(1, "Test Title", 1000, 2)
-    album_2 = Album(1, "Test Title", 1000, 2)
-    assert album_1 == album_2
-    
-"""
-Albums can be represented as string
-"""
+'''
+albums with equal contents are equal
+'''
+def test_equal():
+    album1 = Album(1, 'test title', 1970, 3)
+    album2 = Album(1, 'test title', 1970, 3)
+    assert album1 == album2
 
-def test_stringifying():
-    album = Album(
-        title="Test Title",
-        release_year=2000,
-        artist_id=1,
-        album_id=1
-    )
-    assert str(album) == "Album(Test Title, 2000, 1)"
+
+'''
+represent albums as string 
+'''
+def test_return_a_string():
+    album = Album(1, 'test title', 1970, 3)
+    assert str(album) == "Album(1, test title, 1970, 3)"
